@@ -1,7 +1,7 @@
 ---
-title: hello world!
+title: Hello Baita!
 date: 2026-04-29 16:14:20
-tags:
+tags: Diary
 academia: true
 ---
 
