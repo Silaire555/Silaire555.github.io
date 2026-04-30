@@ -1,0 +1,43 @@
+doctype html
+html(lang=config.language)
+    head
+        meta(charset='UTF-8')
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5")
+        title=config.title
+        meta(name="author" content=config.author)
+        !=favicon_tag(config.favicon || theme.favicon || '/favicon.ico')
+        each item in theme.CDN_USE.css
+            link(rel='stylesheet', href=url_for(item))
+
+        //- ⭐ 在这里添加 import map（只加一次，放在 head 中或 body 开头均可，但必须在 module 脚本之前）
+        script(type="importmap")
+            {
+                "imports": {
+                    "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+                    "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
+                }
+            }
+
+    body
+        canvas#splash-canvas(style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;")
+        
+        //- 原来的 header
+        header#page_header
+            include ./header.pug
+        
+        main#page_main
+            include ./side-card.pug
+            block content   //- 页面主要内容会注入到这里
+        
+        include ./mobile-nav.pug
+        
+        footer#page_footer
+            include ./footer.pug
+
+        //- 原有的 CDN_USE.js 循环（只循环普通的 script 标签，不要混入 import map 和 module）
+        each item in theme.CDN_USE.js
+            script(src=url_for(item))
+        
+        //- ⭐ 添加你的 Three.js 模块脚本（只加一次，放在最后）
+        script(type="module" src="/js/showcase.js" defer)

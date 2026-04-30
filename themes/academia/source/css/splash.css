@@ -1,0 +1,16 @@
+/* 开屏动画画布样式：全屏、最高层级、黑底或透明 */
+#splash-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: block;
+    background-color: #0a0a2a;  /* 深蓝紫色背景，可自行修改 */
+}
+
+/* 动画淡出后，页面恢复滚动（可选） */
+body.loaded {
+    overflow: auto;
+}
