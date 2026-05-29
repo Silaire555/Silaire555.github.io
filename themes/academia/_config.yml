@@ -67,3 +67,14 @@ CDN_USE:
     - https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js #/js/third-party/jquery.min.js
     - https://cdn.jsdelivr.net/npm/jquery-pjax@latest/jquery.pjax.min.js
     - /js/main.js
+
+live2d:
+  enable: false
+  model:
+    use: live2d-widget-model-miku   # 这是橙色小女孩（小春），很稳定
+  display:
+    position: right
+    width: 150
+    height: 300
+  mobile:
+    show: true

@@ -9,6 +9,13 @@ html(lang=config.language)
         !=favicon_tag(config.favicon || theme.favicon || '/favicon.ico')
         each item in theme.CDN_USE.css
             link(rel='stylesheet', href=url_for(item))
+
+        //- Three.js 核心库
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js")
+        //- GSAP 动画库
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js")
+
     body
         header#page_header
             include ./header.pug
@@ -18,5 +25,58 @@ html(lang=config.language)
         include ./mobile-nav.pug
         footer#page_footer
             include ./footer.pug
-        each item in theme.CDN_USE.js
-            script(src=url_for(item))
+
+        //- 背景音乐元素（不自动播放，静候用户点击）
+        audio(id="bg-music" loop preload="auto" style="display:none;")
+            source(src="/music/bg-music.mp3" type="audio/mpeg")
+
+        //- 用户自定义脚本（开屏立方体、银河背景、鼠标轨迹）
+        script(src="/js/splash-cube.js")
+        script(src="/js/galaxy-bg.js")
+        script(src="/js/mouse-trail.js")
+        script(src="/js/click-effect.js")
+
+
+        //- 音乐播放器：用户首次点击页面任意位置时播放（保证成功）
+        script.
+            (function() {
+                var audio = document.getElementById('bg-music');
+                if (!audio) return;
+
+                var started = false;
+
+                function playMusic() {
+                    if (started) return;
+                    started = true;
+
+                    // 确保音量正常，取消静音
+                    audio.volume = 0.5;
+                    audio.muted = false;
+
+                    // 播放并捕获错误
+                    var playPromise = audio.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(function() {
+                            console.log('✅ 音乐播放成功');
+                        }).catch(function(err) {
+                            console.warn('⚠️ 播放失败，尝试重新加载:', err);
+                            audio.load();
+                            setTimeout(function() {
+                                audio.play().catch(function(e) {
+                                    console.error('❌ 重试仍失败:', e);
+                                });
+                            }, 200);
+                        });
+                    } else {
+                        audio.play();
+                    }
+
+                    // 只触发一次，移除监听
+                    window.removeEventListener('click', playMusic);
+                    window.removeEventListener('touchstart', playMusic);
+                }
+
+                // 监听用户首次点击/触摸
+                window.addEventListener('click', playMusic);
+                window.addEventListener('touchstart', playMusic);
+            })();

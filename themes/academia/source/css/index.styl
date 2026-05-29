@@ -1,7 +1,7 @@
 @import 'user'
 @import '_highlight/highlight.styl'
 
-$font-family = "Times New Roman", FangSong, STFangsong, sans-serif;
+$font-family = "Times New Roman","Noto Serif SC", "SimSun", "宋体", sans-serif;
 $theme-blue = #1353d7;
 $theme-dark-blue = #096494;
 $theme-red = #c62641;
@@ -200,13 +200,13 @@ blockquote
 //------------------------------------------------
 #page_main
   min-height: 72%;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 5rem;
+  margin-right: 10rem;
   clear: both;
   margin-top: 3.2rem;
   margin-bottom: 6.4rem;
-  padding-left: 1.6rem;
-  padding-right: 1.6rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   animation: intro 0.3s both;
   animation-delay: 0.35s;
   &::after
@@ -216,11 +216,11 @@ blockquote
 
 .page-title
   font-size 3rem
-  padding 0 1.2rem
+  padding 0 1.8rem
 
 .page article
-  padding-left 1.2rem
-  padding-right 1.2rem
+  padding-left: 1.8rem
+  padding-right 1.8rem
 
   h1
     font-size 3rem
@@ -267,7 +267,8 @@ blockquote
   .page
     width: 82.5%;
     float: right;
-    margin-right: 0;
+    margin-left: 0rem;
+    margin-bottom: 10rem
     if hexo-config('box_shadow') && hexo-config('box_shadow.enable')
       -webkit-box-shadow: 0 4px 8px 6px rgba(7,17,27,0.06);
       box-shadow: 0 4px 8px 6px rgba(7,17,27,0.06);
@@ -285,7 +286,7 @@ blockquote
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   .card-wrap
-    padding-left: 10px;
+    padding-left: 8px;
   img
     width: 100%;
   p,
