@@ -5,7 +5,6 @@ tags: Diary
 academia: true
 ---
 
-## Hello Baita!
 我是一名个人创作者，目前也是化学方向国际高中生。
 这是我第一次正式部署个人博客，此文章用于测试。
 博客使用hexo搭建，主题为academia。

@@ -36,8 +36,48 @@ html(lang=config.language)
         script(src="/js/mouse-trail.js")
         script(src="/js/click-effect.js")
 
+        //- 引入 jQuery
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js")
 
-        //- 音乐播放器：用户首次点击页面任意位置时播放（保证成功）
+        //- 引入我们的搜索脚本
+        script(src="/js/search.js")
+
+        //- 移动设备检测与搜索初始化
+        script.
+            var isMobile = {
+                Android: function() { return navigator.userAgent.match(/Android/i); },
+                BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); },
+                iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); },
+                Opera: function() { return navigator.userAgent.match(/Opera Mini/i); },
+                Windows: function() { return navigator.userAgent.match(/IEMobile/i); },
+                any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }
+            };
+
+            $(document).ready(function() {
+                // 仅在非移动设备上启用实时搜索（可选）
+                if (!isMobile.any()) {
+                    // 延迟加载搜索脚本（如果还未加载）
+                    if (typeof searchFunc === 'function') {
+                        searchFunc("/search.xml", 'local-search-input', 'local-search-result');
+                    } else {
+                        $.getScript('/js/search.js', function() {
+                            searchFunc("/search.xml", 'local-search-input', 'local-search-result');
+                        });
+                    }
+                }
+
+                // 显示/隐藏搜索结果框
+                $('#local-search-input').on('focus', function() {
+                    $('#local-search-result').show();
+                }).on('blur', function() {
+                    // 延迟隐藏，让点击结果链接可以生效
+                    setTimeout(function() {
+                        $('#local-search-result').hide();
+                    }, 200);
+                });
+            });
+
+        //- 音乐播放器：用户首次点击页面任意位置时播放
         script.
             (function() {
                 var audio = document.getElementById('bg-music');
@@ -49,11 +89,9 @@ html(lang=config.language)
                     if (started) return;
                     started = true;
 
-                    // 确保音量正常，取消静音
                     audio.volume = 0.5;
                     audio.muted = false;
 
-                    // 播放并捕获错误
                     var playPromise = audio.play();
                     if (playPromise !== undefined) {
                         playPromise.then(function() {
@@ -71,12 +109,10 @@ html(lang=config.language)
                         audio.play();
                     }
 
-                    // 只触发一次，移除监听
                     window.removeEventListener('click', playMusic);
                     window.removeEventListener('touchstart', playMusic);
                 }
 
-                // 监听用户首次点击/触摸
                 window.addEventListener('click', playMusic);
                 window.addEventListener('touchstart', playMusic);
             })();

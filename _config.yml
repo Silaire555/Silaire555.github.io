@@ -127,3 +127,9 @@ live2d:
     height: 300 #控制看板娘大小
   mobile:
     show: true # 手机中是否展示
+
+
+search:
+  path: search.xml   # 生成的搜索数据库文件名
+  field: post        # 搜索范围：post（文章）、page（页面）或 all（所有）
+  content: true      # 是否索引文章的全部内容
