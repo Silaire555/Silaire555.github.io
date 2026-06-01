@@ -1,0 +1,68 @@
+<html>
+<head>
+    <title>404 - 页面未找到</title>
+    <style>
+        body {
+            text-align: center;
+            padding-top: 50px;
+            font-family: "Noto Serif SC", "SimSun", "宋体", serif !important;
+            background-color: #171628;
+            background-image: url("/images/nebula.jpg"); /* 可选背景图 */
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: #dadada;
+        }
+        .poem-container {
+            margin-top: 55px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            font-style: italic;
+            line-height: 1.8;
+        }
+        .author {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #eaeaea;
+        }
+        .home-link {
+            display: inline-block;
+            margin-top: 50px;
+            padding: 10px 20px;
+            background-color: #00051c;
+            color: #f3f3f3;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>404 Not Found</h1>
+    <p>空间站已在星间迷航</p>
+    
+    <!-- 创建一个专门用来放诗词的区域 -->
+    <div class="poem-container">
+        <div id="poem_line">Baita小站飘走了</div>
+        <div class="author" id="poem_author"></div>
+    </div>
+
+    <a href="/" class="home-link">DELOCALIZATION</a>
+
+    <script>
+        // 在这里定义你的诗词库 (诗句，作者)
+        // 你可以随时添加或修改这个列表
+        const poemList = [
+            { text: "指引一切的罗盘玫瑰向愿者与不愿者叙说，<br>她不接受否定作为答案，永不疲惫，永不止步。<br>——此界面被景象窃贼偷走了。", author: "Book of Hours" },
+        ];
+
+        function displayRandomPoem() {
+            const randomIndex = Math.floor(Math.random() * poemList.length);
+            const randomPoem = poemList[randomIndex];
+            document.getElementById('poem_line').innerHTML = randomPoem.text;  // ← 改为 innerHTML
+            document.getElementById('poem_author').innerText = randomPoem.author;
+        }
+
+        // 页面加载完成后执行
+        window.onload = displayRandomPoem;
+    </script>
+</body>
+</html>
