@@ -14,18 +14,4 @@
         //- 新增搜索菜单项
         li.menus_item.search-item
             include ../search
-
-        //- Open Graph 元数据 (用于微信、QQ等社交分享)
-        meta(property="og:title", content=page.title ? `${page.title} | ${config.title}` : config.title)
-        meta(property="og:type", content="article")
-        meta(property="og:url", content=page.permalink)
-        meta(property="og:image", content=page.thumbnail ? url_for(page.thumbnail) : url_for(config.og_image || '/images/default-og-image.png'))
-        meta(property="og:description", content=page.description ? page.description : (page.excerpt ? strip_html(page.excerpt) : config.description))
-        meta(property="og:site_name", content=config.title)
-        meta(property="og:locale", content=config.language || 'zh_CN')
-
-        //- Twitter Card 元数据 (Twitter 会优先读取这些标签，没有则会使用 og 标签)
-        meta(name="twitter:card", content="summary_large_image")
-        meta(name="twitter:title", content=page.title ? `${page.title} | ${config.title}` : config.title)
-        meta(name="twitter:description", content=page.description ? page.description : (page.excerpt ? strip_html(page.excerpt) : config.description))
-        meta(name="twitter:image", content=page.thumbnail ? url_for(page.thumbnail) : url_for(config.og_image || '/images/default-og-image.png'))
+    

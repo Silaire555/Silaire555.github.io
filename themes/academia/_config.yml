@@ -80,4 +80,4 @@ live2d:
     show: true
 
 # 设置一个全局的分享图片路径
-og_image: /img/avatar.png
+og_image: /themes/academia/source/img/avatar.png

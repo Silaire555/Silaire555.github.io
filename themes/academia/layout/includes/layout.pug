@@ -1,6 +1,21 @@
 doctype html
 html(lang=config.language)
     head
+        //- Open Graph 元数据 (用于微信、QQ等社交分享)
+        - var siteTitle = config.title || 'Delocalization'
+        - var pageTitle = page.title ? page.title + ' | ' + siteTitle : siteTitle
+        - var pageDesc = page.description || page.excerpt || config.description || ''
+        - var pageImage = page.thumbnail ? url_for(page.thumbnail) : (config.og_image ? url_for(config.og_image) : url_for('/images/default-og-image.png'))
+        - var pageUrl = page.permalink || config.url
+
+        meta(property="og:title", content=pageTitle)
+        meta(property="og:type", content=page.layout === 'post' ? 'article' : 'website')
+        meta(property="og:url", content=pageUrl)
+        meta(property="og:image", content=pageImage)
+        meta(property="og:description", content=pageDesc)
+        meta(property="og:site_name", content=config.title)
+        meta(property="og:locale", content=config.language || 'zh_CN')
+
         meta(charset='UTF-8')
         meta(http-equiv="X-UA-Compatible" content="IE=edge")
         meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5")
