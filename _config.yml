@@ -134,4 +134,8 @@ search:
   field: post        # 搜索范围：post（文章）、page（页面）或 all（所有）
   content: true      # 是否索引文章的全部内容
 
-og_image: 'images/avatar.png' # 设置一个全局的分享图片路径
+open_graph:
+  enabled: true
+  default_image: 'images/avatar.png'
+  default_description: "Baita's talk"
+  og_image: 'images/avatar.png' # 设置一个全局的分享图片路径
