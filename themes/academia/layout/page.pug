@@ -4,3 +4,15 @@ block content
     .page(itemscope itemtype='http://schema.org/CreativeWork')
         h2.page-title!= page.title
         article!= page.content
+        //- 引入 CSS
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css")
+
+        //- 分享容器
+        .social-share(
+        data-sites="wechat,weibo,qzone,qq",
+        data-wechat-qrcode-title="微信扫一扫，分享给好友",
+        data-wechat-qrcode-helper='<p>打开微信，点击底部的「发现」</p><p>使用「扫一扫」将文章分享至朋友圈</p>'
+        )
+
+        //- 引入 JS
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js")
