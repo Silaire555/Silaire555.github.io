@@ -78,3 +78,6 @@ live2d:
     height: 300
   mobile:
     show: true
+
+# 设置一个全局的分享图片路径
+og_image: /img/avatar.png
