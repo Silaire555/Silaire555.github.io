@@ -1,20 +1,6 @@
 doctype html
 html(lang=config.language)
     head
-        //- Open Graph 元数据 (用于微信、QQ等社交分享)
-        - var siteTitle = config.title || 'Delocalization'
-        - var pageTitle = page.title ? page.title + ' | ' + siteTitle : siteTitle
-        - var pageDesc = page.description || page.excerpt || config.description || ''
-        - var pageImage = page.thumbnail ? url_for(page.thumbnail) : (config.og_image ? url_for(config.og_image) : url_for('/themes/academia/source/img/avatar.png'))
-        - var pageUrl = page.permalink || config.url
-
-        meta(property="og:title", content=pageTitle)
-        meta(property="og:type", content=page.layout === 'post' ? 'article' : 'website')
-        meta(property="og:url", content=pageUrl)
-        meta(property="og:image", content=pageImage)
-        meta(property="og:description", content=pageDesc)
-        meta(property="og:site_name", content=config.title)
-        meta(property="og:locale", content=config.language || 'zh_CN')
 
         meta(charset='UTF-8')
         meta(http-equiv="X-UA-Compatible" content="IE=edge")
@@ -24,6 +10,20 @@ html(lang=config.language)
         !=favicon_tag(config.favicon || theme.favicon || '/favicon.ico')
         each item in theme.CDN_USE.css
             link(rel='stylesheet', href=url_for(item))
+        //- Open Graph 元数据 (用于微信、QQ等社交分享)
+        - var siteTitle = config.title || 'Delocalization'
+        - var pageTitle = page.title ? page.title + ' | ' + siteTitle : siteTitle
+        - var pageDesc = page.description || page.excerpt || config.description || ''
+        - var pageImage = page.thumbnail ? url_for(page.thumbnail) : (config.og_image ? url_for(config.og_image) : url_for('images/avatar.png'))
+        - var pageUrl = page.permalink ? page.permalink : (config.url + (page.path || ''))
+
+        meta(property="og:title", content=pageTitle)
+        meta(property="og:type", content=page.layout === 'post' ? 'article' : 'website')
+        meta(property="og:url", content=pageUrl)
+        meta(property="og:image", content=pageImage)
+        meta(property="og:description", content=pageDesc)
+        meta(property="og:site_name", content=config.title)
+        meta(property="og:locale", content=config.language || 'zh_CN')
 
         //- Three.js 核心库
         script(src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js")
