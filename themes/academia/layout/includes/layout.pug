@@ -14,7 +14,8 @@ html(lang=config.language)
         - var siteTitle = config.title || 'Delocalization'
         - var pageTitle = page.title ? page.title + ' | ' + siteTitle : siteTitle
         - var pageDesc = page.description || page.excerpt || config.description || ''
-        - var pageImage = page.thumbnail ? url_for(page.thumbnail) : (config.og_image ? url_for(config.og_image) : url_for('images/avatar.png'))
+        - var defaultImage = full_url_for('/images/avatar.png')
+        - var pageImage = page.thumbnail ? full_url_for(page.thumbnail) : (config.og_image ? full_url_for(config.og_image) : defaultImage)
         - var pageUrl = page.permalink ? page.permalink : (config.url + (page.path || ''))
 
         meta(property="og:title", content=pageTitle)

@@ -134,4 +134,4 @@ search:
   field: post        # 搜索范围：post（文章）、page（页面）或 all（所有）
   content: true      # 是否索引文章的全部内容
 
-og_image: '/themes/academia/source/img/avatar.png'
+og_image: 'images/avatar.png' # 设置一个全局的分享图片路径
