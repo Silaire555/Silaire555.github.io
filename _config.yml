@@ -61,7 +61,7 @@ prismjs:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 100
+  per_page: 10
   order_by: -date
 
 # Category & Tag
@@ -134,4 +134,4 @@ search:
   field: post        # 搜索范围：post（文章）、page（页面）或 all（所有）
   content: true      # 是否索引文章的全部内容
 
-og_image: /themes/academia/source/img/avatar.png
+og_image: '/themes/academia/source/img/avatar.png'

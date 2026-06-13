@@ -5,7 +5,7 @@ html(lang=config.language)
         - var siteTitle = config.title || 'Delocalization'
         - var pageTitle = page.title ? page.title + ' | ' + siteTitle : siteTitle
         - var pageDesc = page.description || page.excerpt || config.description || ''
-        - var pageImage = page.thumbnail ? url_for(page.thumbnail) : (config.og_image ? url_for(config.og_image) : url_for('/images/default-og-image.png'))
+        - var pageImage = page.thumbnail ? url_for(page.thumbnail) : (config.og_image ? url_for(config.og_image) : url_for('/themes/academia/source/img/avatar.png'))
         - var pageUrl = page.permalink || config.url
 
         meta(property="og:title", content=pageTitle)
